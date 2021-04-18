@@ -21,6 +21,5 @@ jobs:
           npm install -g serverless
           npm install
           pip install awscli
+          serverless config credentials --provider aws --key ${{ secrets.AWS_ACCESS_KEY_ID }} --secret ${{ secrets.AWS_ACCESS_KEY_ID }}
           serverless deploy --log -s prod
-        with:
-          entrypoint: /usr/bin/env
