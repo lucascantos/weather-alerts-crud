@@ -1,17 +1,3 @@
-# Schema of AWS event
-event_schema = {
-    'pathParameters':{
-        'type': 'dict',
-        'schema':{
-            'pid':{
-                'forbidden': ['all'],
-                'type': 'string',
-                'required': True
-            },
-        }
-    }
-}
-
 user_schema = {   
     'id': {
         'type': 'string',
@@ -85,7 +71,6 @@ payload_schema = {
         'schema': user_schema
     }
 }
-
 
 # Schema of AWS event
 event_schema = {

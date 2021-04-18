@@ -20,27 +20,13 @@ provider:
 custom:
   pythonRequirements:
     dockerizePip: non-linux
-  SNS_ERROR_PATH: ${env:AWS_REGION}:${env:AWS_ID}:${env:SNS_ERROR_TOPIC}
+  SNS_ERROR_PATH: ${env:AWS_DEFAULT_REGION}:${env:AWS_ID}:${env:SNS_ERROR_TOPIC}
 
 plugins:
   - serverless-python-requirements
   - serverless-dotenv-plugin
 
 functions:
-  hello:
-    handler: handler.hello
-    events:
-      - http:
-          path: hello/
-          method: get
-
-  create-user:
-    handler: handler.create_user
-    events:
-      - http:
-          path: users/create
-          method: post
-
   fetch-users:
     handler: handler.fetch_user
     events:
@@ -55,6 +41,13 @@ functions:
           path: users/{uid}
           method: get
 
+  create-user:
+    handler: handler.create_user
+    events:
+      - http:
+          path: users/create
+          method: post
+          
   update-user:
     handler: handler.update_user
     events:

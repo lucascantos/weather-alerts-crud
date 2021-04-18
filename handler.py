@@ -10,12 +10,12 @@ def hello(event=None, context=None):
 
 def fetch_user(event=None, context=None):
     print(event)
-    document, v_error = validate(event, schemas.event_schema, remove_requirement=True)
+    valid_event, v_error = validate(event, schemas.event_schema, remove_requirement=True)
     if v_error:
         return v_error    
 
     users_info = UsersHandler()
-    uid = document['pathParameter'].get('uid')
+    uid = valid_event['pathParameters'].get('uid')
     if uid:
         user_info = users_info.fetch_user(uid)
         payload = {uid: user_info}
@@ -37,7 +37,6 @@ def create_user(event=None, context=None):
         users_info.batch_add_user(valid_payload)
     else:
         users_info.add_user(valid_payload)
-
     return make_response()
 
 
@@ -58,5 +57,14 @@ def update_user(event=None, context=None):
 
     return make_response()
 
-def user_exists(event=None, context=None):
-    pass
+def remove_user(event=None, context=None):
+    print(event)
+    valid_event, v_error = validate(event, schemas.event_schema)
+    if v_error:
+        return v_error
+
+    users_info = UsersHandler()
+    uid = valid_event['pathParameters'].get('uid')
+    users_info.remove_user
+    return make_response({'message': f"User removed: {uid}"})
+
