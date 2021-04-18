@@ -6,59 +6,75 @@ provider:
   name: aws
   runtime: python3.8
 
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+        - s3:GetObject
+        - s3:HeadObject
+        - s3:ListBucket
+      Resource: 
+        - "arn:aws:s3:::${env:BUCKET_NAME}"
+        - "arn:aws:s3:::${env:BUCKET_NAME}/*"
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+  SNS_ERROR_PATH: ${env:DEFAULT_REGION}:${env:AWS_ID}:${env:SNS_ERROR_TOPIC}
+
+plugins:
+  - serverless-offline
+  - serverless-python-requirements
+  - serverless-dotenv-plugin
 
 functions:
-  create-user:
+  hello:
     handler: handler.hello
+    events:
+      - http:
+          path: hello/
+          method: get
+
+  create-user:
+    handler: handler.create_user
     events:
       - http:
           path: users/create
           method: post
 
-  # create-user:
-  #   handler: handler.create_user
-  #   events:
-  #     - http:
-  #         path: users/create
-  #         method: post
+  fetch-users:
+    handler: handler.fetch_user
+    events:
+      - http:
+          path: users/
+          method: get
 
-  # fetch-user:
-  #   handler: handler.fetch_user
-  #   events:
-  #     - http:
-  #         path: users/
-  #         method: get
+  fetch-user-id:
+    handler: handler.fetch_user
+    events:
+      - http:
+          path: users/{uid}
+          method: get
 
-  # fetch-user:
-  #   handler: handler.fetch_user
-  #   events:
-  #     - http:
-  #         path: users/{uid}
-  #         method: get
+  update-user:
+    handler: handler.update_user
+    events:
+      - http:
+          path: users/{uid}/update
+          method: put
 
-  # update-user:
-  #   handler: handler.update_user
-  #   events:
-  #     - http:
-  #         path: users/{uid}/update
-  #         method: put
-
-  # remove-user:
-  #   handler: handler.remove_user
-  #   events:
-  #     - http:
-  #         path: users/{uid}/remove
-  #         method: delete
+  remove-user:
+    handler: handler.remove_user
+    events:
+      - http:
+          path: users/{uid}/remove
+          method: delete
   
   
 # you can add CloudFormation resource templates here
-#resources:
-#  Resources:
-#    NewResource:
-#      Type: AWS::S3::Bucket
-#      Properties:
-#        BucketName: my-new-bucket
-#  Outputs:
-#     NewOutput:
-#       Description: "Description for the output"
-#       Value: "Some output value"
+resources:
+ Resources:
+   NewResource:
+     Type: AWS::S3::Bucket
+     Properties:
+       BucketName: ${env:BUCKET_NAME}

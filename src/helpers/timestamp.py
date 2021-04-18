@@ -42,6 +42,11 @@ def normalize_timestamp(timestamp):
     return datetime(**dict(zip(headers, splitted)))
 
 def to_datetime(timestamp, format='url'):
+    '''
+    Converts timestamp string to datetime
+    :params timestamp: string with datetime format
+    :params format: string with format
+    '''
     return datetime.strptime(timestamp, formats[format])
 
 def relative_date(**kwargs):

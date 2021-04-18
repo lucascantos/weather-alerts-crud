@@ -15,7 +15,8 @@ def fetch_user(event=None, context=None):
         return v_error    
 
     users_info = UsersHandler()
-    if uid := document['pathParameter'].get('uid'):
+    uid = document['pathParameter'].get('uid')
+    if uid:
         user_info = users_info.fetch_user(uid)
         payload = {uid: user_info}
     else:
