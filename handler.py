@@ -4,6 +4,10 @@ from src.helpers.response import make_response
 from src.helpers.validator import validate
 from src.schemas import schemas
 
+def hello(event=None, context=None):
+    print(event)
+    return make_response()
+
 def fetch_user(event=None, context=None):
     print(event)
     document, v_error = validate(event, schemas.event_schema, remove_requirement=True)

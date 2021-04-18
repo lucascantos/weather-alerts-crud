@@ -9,39 +9,46 @@ provider:
 
 functions:
   create-user:
-    handler: handler.create_user
+    handler: handler.hello
     events:
       - http:
           path: users/create
           method: post
 
-  fetch-user:
-    handler: handler.fetch_user
-    events:
-      - http:
-          path: users/
-          method: get
+  # create-user:
+  #   handler: handler.create_user
+  #   events:
+  #     - http:
+  #         path: users/create
+  #         method: post
 
-  fetch-user:
-    handler: handler.fetch_user
-    events:
-      - http:
-          path: users/{uid}
-          method: get
+  # fetch-user:
+  #   handler: handler.fetch_user
+  #   events:
+  #     - http:
+  #         path: users/
+  #         method: get
 
-  update-user:
-    handler: handler.update_user
-    events:
-      - http:
-          path: users/{uid}/update
-          method: put
+  # fetch-user:
+  #   handler: handler.fetch_user
+  #   events:
+  #     - http:
+  #         path: users/{uid}
+  #         method: get
 
-  remove-user:
-    handler: handler.remove_user
-    events:
-      - http:
-          path: users/{uid}/remove
-          method: delete
+  # update-user:
+  #   handler: handler.update_user
+  #   events:
+  #     - http:
+  #         path: users/{uid}/update
+  #         method: put
+
+  # remove-user:
+  #   handler: handler.remove_user
+  #   events:
+  #     - http:
+  #         path: users/{uid}/remove
+  #         method: delete
   
   
 # you can add CloudFormation resource templates here
