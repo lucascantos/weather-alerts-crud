@@ -1,0 +1,22 @@
+{
+  "name": "weather-alerts-crud",
+  "version": "1.0.0",
+  "description": "Weather alerts api for handling receivers",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucascantos/weather-alerts-crud.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucascantos/weather-alerts-crud/issues"
+  },
+  "homepage": "https://github.com/lucascantos/weather-alerts-crud#readme",
+  "dependencies": {
+    "serverless-dotenv-plugin": "^3.9.0",
+    "serverless-python-requirements": "^5.1.1"
+  }
+}
