@@ -8,8 +8,9 @@ jobs:
     steps:
       - name: checkout source code
         uses: actions/checkout@v1
-      - name: default deploy
+      - name: get node
         uses: nikolaik/python-nodejs:python3.8-nodejs13
+      - name: default deploy
         run: |
           npm install -g serverless
           npm install
