@@ -22,5 +22,5 @@ jobs:
           npm install
           pip install awscli
           aws configure list
-          serverless config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_ACCESS_KEY_ID
+          serverless config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY
           serverless deploy --log -s prod
