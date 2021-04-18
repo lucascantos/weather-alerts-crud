@@ -11,6 +11,7 @@ jobs:
         AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        DOCKER_DRIVER: overlay
     steps:
       - name: checkout source code
         uses: actions/checkout@v1
@@ -19,8 +20,11 @@ jobs:
           npm install -g serverless
           npm install
           pip install awscli
-          serverless deploy --log -s prod     
-        env:
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_REGION }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }} 
+          serverless deploy --log -s prod
+        with:
+          entrypoint: |
+            '/usr/bin/env'
+            'PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
+            'AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}'
+            'AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}'
+            'AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION}'
