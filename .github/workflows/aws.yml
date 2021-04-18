@@ -23,4 +23,4 @@ jobs:
           pip install awscli
           serverless deploy --log -s prod
         with:
-          entrypoint: '/usr/bin/env'
+          entrypoint: /usr/bin/env
