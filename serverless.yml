@@ -23,7 +23,6 @@ custom:
   SNS_ERROR_PATH: ${env:AWS_REGION}:${env:AWS_ID}:${env:SNS_ERROR_TOPIC}
 
 plugins:
-  - serverless-offline
   - serverless-python-requirements
   - serverless-dotenv-plugin
 
