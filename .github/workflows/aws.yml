@@ -7,13 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout source code
-        uses: actions/checkout@v1
-      - name: default deploy
-        run: |
-          npm install -g serverless
-          npm install
-          pip install awscli
-          serverless deploy --log -s prod      
+        uses: actions/checkout@v1    
       - name: deploy
         uses: serverless/github-action@master
         env:
