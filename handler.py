@@ -4,18 +4,13 @@ from src.helpers.response import make_response
 from src.helpers.validator import validate
 from src.schemas import schemas
 
-def hello(event=None, context=None):
-    print(event)
-    return make_response()
-
 def fetch_user(event=None, context=None):
     print(event)
     valid_event, v_error = validate(event, schemas.event_schema, remove_requirement=True)
     if v_error:
         return v_error    
-
-    users_info = UsersHandler()
     uid = valid_event['pathParameters'].get('uid')
+    users_info = UsersHandler()
     if uid:
         user_info = users_info.fetch_user(uid)
         payload = {uid: user_info}
