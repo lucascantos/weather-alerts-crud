@@ -46,7 +46,7 @@ def update_user(event=None, context=None):
     if v_error:
         return v_error
     
-    uid = valid_event['pathParameter']['uid']
+    uid = valid_event['pathParameters']['uid']
     users_info = UsersHandler()
     users_info.update_user(uid, valid_payload)
 
@@ -60,6 +60,6 @@ def remove_user(event=None, context=None):
 
     users_info = UsersHandler()
     uid = valid_event['pathParameters'].get('uid')
-    users_info.remove_user
+    users_info.remove_user(uid)
     return make_response({'message': f"User removed: {uid}"})
 

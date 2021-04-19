@@ -1,4 +1,4 @@
-# from src.services.s3 import S3
+import json
 from src.services.s3 import S3
 class UsersHandler:
     def __init__(self):
@@ -10,18 +10,19 @@ class UsersHandler:
             self.users = {}
     
     def add_user(self, payload):
-        uid = payload.pop('uid')
+        uid = payload.pop('id')
         self.users[uid] = payload
         self.save()
     
     def batch_add_user(self, batch_data):
         for payload in batch_data:
-            uid = payload.pop('uid')
+            uid = payload.pop('id')
             self.users[uid] = payload
         self.save()
 
     def update_user(self, uid, payload):
         self.users[uid].update(payload)
+        
         self.save()
 
     def fetch_user(self, uid):
@@ -35,5 +36,5 @@ class UsersHandler:
         self.save()
     
     def save(self):
-        self.bucket.upload(self.users, self.filename)
+        self.bucket.upload(json.dumps(self.users), self.filename)
         

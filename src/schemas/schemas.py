@@ -25,7 +25,7 @@ user_schema = {
         'min': 0.1,
         'coerce': (float, lambda x: round(x, 1))
     },
-    'variable':{
+    'variables':{
         'type': 'list',
         'default': ['lightning','precipitation'],
         'allowed': [
