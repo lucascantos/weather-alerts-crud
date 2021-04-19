@@ -20,7 +20,7 @@ provider:
 custom:
   pythonRequirements:
     dockerizePip: non-linux
-  SNS_ERROR_PATH: ${env:AWS_REGION}:${env:AWS_ID}:${env:SNS_ERROR_TOPIC}
+  SNS_ERROR_PATH: ${env:AWS_DEFAULT_REGION}:${env:AWS_ID}:${env:SNS_ERROR_TOPIC}
 
 plugins:
   - serverless-python-requirements
