@@ -29,11 +29,11 @@ class UsersHandler:
 
     def user_exists(self,uid):
         return uid in self.users.keys()
+
+    def remove_user(self,uid):
+        self.users.pop(uid)
+        self.save()
     
     def save(self):
         self.bucket.upload(self.users, self.filename)
         
-x = {
-    'a': 2
-}
-print(list(x))
