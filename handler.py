@@ -20,7 +20,7 @@ def fetch_user(event=None, context=None):
         user_info = users_info.fetch_user(uid)
         payload = {uid: user_info}
     else:
-        payload = {'users': users_info.users}
+        payload = {'users': json.dumps(users_info.users)}
 
     return make_response(payload)
 

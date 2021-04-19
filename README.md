@@ -16,3 +16,6 @@ To run all the tests use:
 To run a specific test, use:
 `pytest tests/<filename> -v`
 Add `-v` for verbose mode
+
+# Deploy
+`sls deploy -s prod`
