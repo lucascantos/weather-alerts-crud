@@ -18,10 +18,10 @@ jobs:
           PATH: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
           DOCKER_DRIVER: overlay
         run: |
+          echo "$GITHUB_CONTEXT"
           npm install -g serverless
           npm install
           pip install awscli
           aws configure list
-          echo $AWS_DEFAULT_REGION $DOCKER_DRIVER
           serverless config credentials --provider aws --key "$AWS_ACCESS_KEY_ID" --secret "$AWS_SECRET_ACCESS_KEY"
           serverless deploy --log -s prod
