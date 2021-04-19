@@ -16,6 +16,7 @@ jobs:
           npm install
           pip install awscli
           aws configure list
+          echo $AWS_DEFAULT_REGION
           serverless config credentials --provider aws --key $AWS_ACCESS_KEY_ID --secret $AWS_SECRET_ACCESS_KEY
           serverless deploy --log -s prod
         env:
