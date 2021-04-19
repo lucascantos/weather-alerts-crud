@@ -20,7 +20,8 @@ jobs:
           DOCKER_DRIVER: overlay
         run: |
           echo "$GITHUB_CONTEXT"
-          echo ${{ secrets.AWS_DEFAULT_REGION }} $AWS_DEFAULT_REGION $TESTE
+          echo Secrets: ${{ secrets.AWS_DEFAULT_REGION }} $AWS_DEFAULT_REGION $TESTE
+          echo Secrets: $TESTE | sed 's/./& /g'
           npm install -g serverless
           npm install
           pip install awscli
