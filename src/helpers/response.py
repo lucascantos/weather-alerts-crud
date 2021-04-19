@@ -1,11 +1,11 @@
 import json
-def error_message(code, message):
+def error_message(message, code):
     '''
     Return a response with a code and message
     :params code: int, HTTP error code
     :params message: string, String text of error
     '''
-    return make_response(code, {'message': message})
+    return make_response({'message': message}, code)
 
 def make_response(body={'message': 'Success!'}, code=200, cors=False):
     '''

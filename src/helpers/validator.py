@@ -34,7 +34,7 @@ def error_handler(v):
     '''
     if len(v._errors) > 0:
         status_code = 400
-        return error_message(status_code, v.errors)
+        return error_message(v.errors,status_code)
 
 def special_error_handler(v):
     '''
