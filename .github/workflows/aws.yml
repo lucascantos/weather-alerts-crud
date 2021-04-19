@@ -13,17 +13,11 @@ jobs:
       - name: default deploy
         env:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-          SUPERTESTE: ${{ secrets.SUPERTESTE }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           PATH: '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin'
           DOCKER_DRIVER: overlay
         run: |
-          echo "$GITHUB_CONTEXT"
-          echo Secrets: ${{ secrets.AWS_DEFAULT_REGION }} $AWS_DEFAULT_REGION $SUPERTESTE
-          echo $SUPERTESTE | sed 's/./& /g'
-          echo Secrets: $AWS_DEFAULT_REGION | sed 's/./& /g'
-          echo Secrets: ${{ secrets.AWS_DEFAULT_REGION }} | sed 's/./& /g'
           npm install -g serverless
           npm install
           pip install awscli
