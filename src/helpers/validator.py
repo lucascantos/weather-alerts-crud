@@ -50,7 +50,7 @@ def special_error_handler(v):
                 special_code_flag = _get_child_code(i.child_errors[0])
                 if special_code_flag:
                     status_code = 422
-        return error_message(status_code, v.errors)
+        return error_message(v.errors,status_code)
 
 def _get_child_code(children):
     '''

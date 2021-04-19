@@ -76,10 +76,12 @@ payload_schema = {
 event_schema = {
     'pathParameters':{
         'type': 'dict',
+        'default': {'uid': None},
         'schema':{
             'uid':{
                 'type': 'string',
-                'required': True
+                'required': True,
+                'nullable': True
             },
         }
     }
